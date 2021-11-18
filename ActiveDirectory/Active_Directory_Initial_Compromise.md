@@ -28,3 +28,15 @@ When clients DNS resolution fails, attacker responds and says "I know where 'htt
 Can be a wrong domain name like googgle.com, or an incorrect network drive.
 Using responder, attacker listens on network for a failed dns event where responder can reply and victim will send attacker ntlm hash.
 
+Try and crack hash offline for further lateral/vertical movement
+
+
+#### LLMNR Defense
+Disable LLMNR and NBT-NS
+If unable to disable LLMNR and NBT-NS, require Network Access Control and require strong passwords, (>14 characters, the more complex the harder to crack)
+
+***
+---
+## SMB Relay
+---
+
