@@ -1,3 +1,5 @@
 # TCM-PEH
-## The Cyber Mentor Practical Ethical Hacking Course Notes
+
+## Notes from 'The Cyber Mentor's Practical Ethical Hacking course
+
 
