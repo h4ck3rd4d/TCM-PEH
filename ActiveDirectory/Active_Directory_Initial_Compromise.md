@@ -35,8 +35,19 @@ Try and crack hash offline for further lateral/vertical movement
 Disable LLMNR and NBT-NS
 If unable to disable LLMNR and NBT-NS, require Network Access Control and require strong passwords, (>14 characters, the more complex the harder to crack)
 
-***
+
 ---
 ## SMB Relay
 ---
+
+### Definition
+Instead of cracking hashes offline, relay hashes to specific mains to attempt to gain access
+
+--SMB signing must be disabled on target
+--Relayed creds must have admin rights on target
+
+### Setup Attack
+- In responder.conf turn off SMB and HTTP
+- Run Responder
+
 
