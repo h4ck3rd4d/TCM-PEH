@@ -60,6 +60,7 @@ Instead of cracking hashes offline, relay hashes to specific mains to attempt to
 ### ID hosts with SMB signing disabled
 - Nessus scan
 - nmap via ``` nmap --script=smb2-security-mode.nse -p 445 <ip range> ```
+	- looking for ``` message signing enabled but not required ```
 
 
 
