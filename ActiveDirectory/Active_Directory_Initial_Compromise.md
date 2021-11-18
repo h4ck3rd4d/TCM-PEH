@@ -30,6 +30,10 @@ Using responder, attacker listens on network for a failed dns event where respon
 
 Try and crack hash offline for further lateral/vertical movement
 
+## Attack Steps
+- Turn on responder
+- Wait for an event and captured hash
+- try to crack hash offline
 
 #### LLMNR Defense
 Disable LLMNR and NBT-NS
@@ -46,8 +50,17 @@ Instead of cracking hashes offline, relay hashes to specific mains to attempt to
 --SMB signing must be disabled on target
 --Relayed creds must have admin rights on target
 
-### Setup Attack
+### Attack Steps
 - In responder.conf turn off SMB and HTTP
 - Run Responder
+- run ntlmrelayx.py -tf targest.txt -sbm2support
+- if succesful, will obtain SAM file (similar to /etc/shadow on linux)
+- can attempt to crack hashes or try to pass hash
+
+### ID hosts with SMB signing disabled
+- Nessus scan
+- nmap via ``` nmap --script=smb2-security-mode.nse -p 445 <ip range> ```
+
+
 
 
