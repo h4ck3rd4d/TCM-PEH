@@ -1,15 +1,15 @@
 # Active Directory Initial Compromise
 
 ---
-## Links
+### Links
 [Top 5 got Domain Admin](https://adam-toscher.medium.com/top-five-ways-i-got-domain-admin-on-your-internal-network-before-lunch-2018-edition-82259ab73aaa)
 ---
 
 ---
-## Tools
+### Tools
 ---
 
-### responder
+#### responder
 Usage: responder -I eth0 -w -r -f
 
 ### impacket
@@ -30,7 +30,7 @@ Using responder, attacker listens on network for a failed dns event where respon
 
 Try and crack hash offline for further lateral/vertical movement
 
-## Attack Steps
+### Attack Steps
 - Turn on responder
 - Wait for an event and captured hash
 - try to crack hash offline
@@ -47,21 +47,43 @@ If unable to disable LLMNR and NBT-NS, require Network Access Control and requir
 ### Definition
 Instead of cracking hashes offline, relay hashes to specific mains to attempt to gain access
 
---SMB signing must be disabled on target
---Relayed creds must have admin rights on target
+-- SMB signing must be disabled on target
+-- Relayed creds must have admin rights on target
 
 ### Attack Steps
 - In responder.conf turn off SMB and HTTP
-- Run Responder
-- run ntlmrelayx.py -tf targest.txt -sbm2support
+- Run Responder ``` responder -I eth0 -rdw ```
+- run ntlmrelayx ``` ntlmrelayx.py -tf targest.txt -sbm2support ```
 - if succesful, will obtain SAM file (similar to /etc/shadow on linux)
-- can attempt to crack hashes or try to pass hash
+	- can attempt to crack hashes or try to pass hash
+	- ntlmrelayx get interactive shell with -i , -e meterpreter.exe, -c "command" 
 
 ### ID hosts with SMB signing disabled
 - Nessus scan
 - nmap via ``` nmap --script=smb2-security-mode.nse -p 445 <ip range> ```
 	- looking for ``` message signing enabled but not required ```
 
+### Mitigations
+- Enable SMB signing on all devices
+	- pro: completely stops attack
+	- con: can cause performance issue
+- Disable NTLM auth
+	- if kerberos fails, Windows defaults back to NTLM
+- Account Tiering
+- Local admin restriction
 
+
+### Gain Shell
+- run  metasploit, and use psexec
+	- may fail first time or two, and try different targets
+
+- psexec.py as alternate
+	- ``` psexec.py domain/user:password@<ip> ```
+- smbexec.py or wmiexec.py as options
+
+
+---
+## IPv6 Attacks
+---
 
 
