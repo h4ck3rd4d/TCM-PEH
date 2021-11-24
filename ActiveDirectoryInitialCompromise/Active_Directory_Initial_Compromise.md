@@ -4,6 +4,8 @@
 ### Links
 #### [Top 5 got Domain Admin](https://adam-toscher.medium.com/top-five-ways-i-got-domain-admin-on-your-internal-network-before-lunch-2018-edition-82259ab73aaa)
 #### [mitm6](https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/)
+#### [DirkJanm Blog for ntlm relay and kerberos delegation](https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/)
+#### [Pentester's Guide to Printer Hacking](https://www.mindpointgroup.com/blog/how-to-hack-through-a-pass-back-attack/)
 ---
 
 ---
@@ -88,11 +90,29 @@ Instead of cracking hashes offline, relay hashes to specific mains to attempt to
 
 #### What is IPv6 attack
 Similar to other attacks, attacker acts as DNS for ipv6 requests and tricks victim machine into sending hash to attacker
-> If an attacker is on the local network, either physically (via a drop device) or via an infected workstation, it is possible to perform a DNS takeover using mitm6, provided IPv6 is not already in use in the network. When this attack is performed, it is also possible to make computer accounts and users authenticate to us over HTTP by spoofing the WPAD location and requesting authentication to use our rogue proxy.
+> "If an attacker is on the local network, either physically (via a drop device) or via an infected workstation, it is possible to perform a DNS takeover using mitm6, provided IPv6 is not already in use in the network. When this attack is performed, it is also possible to make computer accounts and users authenticate to us over HTTP by spoofing the WPAD location and requesting authentication to use our rogue proxy."
 > Dirk-jan Mollema [blog article](https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/)
+
 #### Steps
 - ``` mitm6 -d <domain> ```
 - ``` ntlmrelayx.py -6 -t ldaps://<ip> -wh fakewpad.domain -l lootfile ```
+- wait
 
 With normal user, mitm6 can grab AD info such as groups, policies, users, computers etc...
 If admin logs in, mitm6 can create new user with Admin rights.
+
+---
+## Passback Attacks
+---
+
+Pose as LDAP server, when user authenticates to MFP, attacker recieves credentials
+
+> "The stored LDAP credentials are usually located on the network settings tab in the online configuration of the MFP and can typically be accessed via the Embedded Web Service (EWS). If you can reach the EWS and modify the LDAP server field by replacing the legitimate LDAP server with your malicious LDAP server, then the next time an LDAP query is conducted from the MFP, it will attempt to authenticate to your LDAP server using the configured credentials or the user-supplied credentials."
+> Taken from this [article](https://www.mindpointgroup.com/blog/how-to-hack-through-a-pass-back-attack)
+
+### Default mfp creds
+- Vendor:Username:Password
+	- Ricoh:admin:blank
+	- HP:admin:admin or blank
+	- Canon:ADMIN:canon
+	- Epson:EPSONWEB:admin
