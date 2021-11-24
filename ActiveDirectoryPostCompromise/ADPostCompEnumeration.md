@@ -23,16 +23,19 @@ Get PassPolicy and access rules ```(Get-DomainPolicy)."system access"```
 	- Looking for min pass length, min/max pass age, lockout count
 
 Get user info ```Get-NetUser ```
-	- use select to filter down
-
-	- ``` Get-NetUser | select cn ``` for Users
-	- ``` Get-NetUser | select samaccountname``` for usernames	 
-	- ``` Get-NetUser | select description ``` possible cleartext credentials
-	- ``` Get-UserProperty``` to list user properties fields
-	- ``` Get-UserProperty -Properties pwdlastset``` to look for new/old passwd activity
-	- ``` Get-UserProperty -Properties logoncount``` low or no logoncount possible honeypot
-	- ``` Get-UserProperty -Properties badpwdcount``` look for brute force attacks
+- use select to filter down
+- ``` Get-NetUser | select cn ``` for Users
+- ``` Get-NetUser | select samaccountname``` for usernames	 
+- ``` Get-NetUser | select description ``` possible cleartext credentials
+- ``` Get-UserProperty``` to list user properties fields
+- ``` Get-UserProperty -Properties pwdlastset``` to look for new/old passwd activity
+- ``` Get-UserProperty -Properties logoncount``` low or no logoncount possible honeypot
+- ``` Get-UserProperty -Properties badpwdcount``` look for brute force attacks
 
 Computer info
- ``` Get-NetComputer``` for list of computer names
- Get-NetComputer -FullData | select properties to filter like OperatingSystem
+``` Get-NetComputer``` for list of computer names
+``` Get-NetComputer -FullData | select properties OperatingSystem``` To View Os
+
+Groups
+`Get-NetGroup` list groups
+`Get-NetGroup -GroupName "admin"` list all Admin groups
