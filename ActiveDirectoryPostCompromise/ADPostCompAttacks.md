@@ -102,6 +102,9 @@ crack with hashcat
 ## GPP Attacks
 ---
 
-### Group Policy Preferences
-- metasploit smb_enum_gpp to check
+locate cpassword in Groups.xml
+use gpp-decrypt to decrypt cpassword. 
+try to gain shell with creds
+
+
 
