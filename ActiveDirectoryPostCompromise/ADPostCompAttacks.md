@@ -69,5 +69,5 @@ crack with hashcat
 - set options in psexec module then hit run
 - `load incognito` to attempt token impersonation
 - `list_tokens -u` list available tokens
-- `impersonate_token <token name>` use "\\" to escape backslash i.e. domain\\user for token name domain\user
+- `impersonate_token <token name>` use "\\\" to escape backslash i.e. domain\\user for token name domain\user
 
