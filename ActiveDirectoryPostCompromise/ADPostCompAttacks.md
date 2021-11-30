@@ -70,4 +70,6 @@ crack with hashcat
 - `load incognito` to attempt token impersonation
 - `list_tokens -u` list available tokens
 - `impersonate_token <token name>` use "\\\\" to escape backslash i.e. domain\\user for token name domain\user
+- `rev2self` to revert to self after impersonation
+
 
